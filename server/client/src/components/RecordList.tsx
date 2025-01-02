@@ -54,11 +54,11 @@ interface RecordType {
 
 export default function RecordList() {
   const [records, setRecords] = useState<RecordType[]>([]);
-
+  const react_uri = process.env.REACT_APP_URI;
   // This method fetches the records from the database.
   useEffect(() => {
     async function getRecords() {
-      const response = await fetch(`http://localhost:5050/record/`);
+      const response = await fetch(`${react_uri}/record`);
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
         console.error(message);
@@ -69,11 +69,11 @@ export default function RecordList() {
     }
     getRecords();
     return;
-  }, [records.length]);
+  }, [react_uri]);
 
   // This method will delete a record
   async function deleteRecord(id: string) {
-    await fetch(`http://localhost:5050/record/${id}`, {
+    await fetch(`${react_uri}/record/${id}`, {
       method: "DELETE",
     });
     const newRecords = records.filter((el) => el._id !== id);

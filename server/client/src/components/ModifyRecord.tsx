@@ -7,7 +7,9 @@ interface FormState {
   level: string;
 }
 
+
 export default function Record() {
+    
   const [form, setForm] = useState<FormState>({
     name: "",
     position: "",
@@ -23,7 +25,7 @@ export default function Record() {
       if (!id) return;
       setIsNew(false);
       const response = await fetch(
-        `http://localhost:5050/record/${id}`
+        BASE_URL+`/${id}`
       );
       if (!response.ok) {
         const message = `An error has occurred: ${response.statusText}`;
@@ -51,13 +53,14 @@ export default function Record() {
 
   // This function will handle the submission.
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
+    const react_uri = process.env.REACT_APP_API_URL || "";
     e.preventDefault();
     const person = { ...form };
     try {
       let response;
       if (isNew) {
         // if we are adding a new record we will POST to /record.
-        response = await fetch("http://localhost:5050/record", {
+        response = await fetch(`${react_uri}+/record`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -66,7 +69,7 @@ export default function Record() {
         });
       } else {
         // if we are updating a record we will PATCH to /record/:id.
-        response = await fetch(`http://localhost:5050/record/${params.id}`, {
+        response = await fetch(`${react_uri}/${params.id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
