@@ -54,7 +54,7 @@ interface RecordType {
 
 export default function RecordList() {
   const [records, setRecords] = useState<RecordType[]>([]);
-  const react_uri = process.env.REACT_APP_URI;
+  const react_uri = import.meta.env.REACT_APP_URI;
   // This method fetches the records from the database.
   useEffect(() => {
     async function getRecords() {

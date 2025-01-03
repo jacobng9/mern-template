@@ -9,7 +9,6 @@ interface FormState {
 
 
 export default function Record() {
-    
   const [form, setForm] = useState<FormState>({
     name: "",
     position: "",
@@ -18,15 +17,13 @@ export default function Record() {
   const [isNew, setIsNew] = useState(true);
   const params = useParams();
   const navigate = useNavigate();
-  const react_uri = process.env.REACT_APP_API_URL || "";
+  const react_uri = import.meta.env.REACT_APP_API_BASE_URL; // Get the base URL from the environment variable
   useEffect(() => {
     async function fetchData() {
       const id = params.id?.toString() || undefined;
       if (!id) return;
       setIsNew(false);
-      const response = await fetch(
-        `${react_uri}+/${id}`
-      );
+      const response = await fetch(`${react_uri}+/${id}`);
       if (!response.ok) {
         const message = `An error has occurred: ${response.statusText}`;
         console.error(message);
