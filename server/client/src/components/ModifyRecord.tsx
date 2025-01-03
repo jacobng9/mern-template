@@ -18,14 +18,14 @@ export default function Record() {
   const [isNew, setIsNew] = useState(true);
   const params = useParams();
   const navigate = useNavigate();
-
+  const react_uri = process.env.REACT_APP_API_URL || "";
   useEffect(() => {
     async function fetchData() {
       const id = params.id?.toString() || undefined;
       if (!id) return;
       setIsNew(false);
       const response = await fetch(
-        BASE_URL+`/${id}`
+        `${react_uri}+/${id}`
       );
       if (!response.ok) {
         const message = `An error has occurred: ${response.statusText}`;
@@ -42,7 +42,7 @@ export default function Record() {
     }
     fetchData();
     return;
-  }, [params.id, navigate]);
+  }, [params.id, navigate, react_uri]);
 
   // These methods will update the state properties.
   function updateForm(value: Partial<FormState>) {
@@ -53,7 +53,6 @@ export default function Record() {
 
   // This function will handle the submission.
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
-    const react_uri = process.env.REACT_APP_API_URL || "";
     e.preventDefault();
     const person = { ...form };
     try {
