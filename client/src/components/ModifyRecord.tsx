@@ -7,7 +7,6 @@ interface FormState {
   level: string;
 }
 
-
 export default function Record() {
   const [form, setForm] = useState<FormState>({
     name: "",
@@ -17,13 +16,13 @@ export default function Record() {
   const [isNew, setIsNew] = useState(true);
   const params = useParams();
   const navigate = useNavigate();
-  const react_uri = import.meta.env.REACT_APP_API_BASE_URL; // Get the base URL from the environment variable
+  const react_uri = import.meta.env.VITE_REACT_APP_URI;
   useEffect(() => {
     async function fetchData() {
       const id = params.id?.toString() || undefined;
       if (!id) return;
       setIsNew(false);
-      const response = await fetch(`${react_uri}+/${id}`);
+      const response = await fetch(`${import.meta.env._API_URL}+/${id}`);
       if (!response.ok) {
         const message = `An error has occurred: ${response.statusText}`;
         console.error(message);
@@ -39,7 +38,7 @@ export default function Record() {
     }
     fetchData();
     return;
-  }, [params.id, navigate, react_uri]);
+  }, [params.id, navigate]);
 
   // These methods will update the state properties.
   function updateForm(value: Partial<FormState>) {
@@ -56,7 +55,7 @@ export default function Record() {
       let response;
       if (isNew) {
         // if we are adding a new record we will POST to /record.
-        response = await fetch(`${react_uri}+/record`, {
+        response = await fetch(`${react_uri}/record`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -78,7 +77,11 @@ export default function Record() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
     } catch (error) {
-      console.error("A problem occurred with your fetch operation: ", error);
+      console.error(
+        "A problem occurred with your fetch operation: ",
+        error,
+        react_uri
+      );
     } finally {
       setForm({ name: "", position: "", level: "" });
       navigate("/");
