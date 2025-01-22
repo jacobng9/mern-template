@@ -73,7 +73,7 @@ export default function RecordList() {
 
   // This method will delete a record
   async function deleteRecord(id: string) {
-    await fetch(`http://localhost:5050/record/${id}`, {
+    await fetch(`${react_uri}/record/${id}`, {
       method: "DELETE",
     });
     const newRecords = records.filter((el) => el._id !== id);
