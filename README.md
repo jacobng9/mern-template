@@ -45,5 +45,5 @@ Input deployment scripts for build and server commands
 If any questions, please create comment!
 
 ## License
-MIT License
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
