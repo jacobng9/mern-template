@@ -1,11 +1,12 @@
 # Jacob's Mern Template 🍃
 
 This repository provides a boilerplate MERN (MongoDB, Express.js, React.js, Node.js) stack application. It is designed to help beginner developers quickly spin up a full-stack web application with a scalable architecture.
-For example, if you had a directory called `~/Coding/` with this layout
+For 
 
 Fork the project first.
 
 Scripts
+
 Test
 ```
 npm run test
@@ -26,6 +27,7 @@ npm i in both server and client folders
 
 Add .env in client folder
 - VITE_REACT_APP_URI=http://localhost:5050
+
 Add config.env in server folder
 - ATLAS_URI=mongodb+srv://... (MongoDB drivers link)
 - PORT=5050
@@ -34,10 +36,14 @@ Add config.env in server folder
 ## Deployment (example using Render)
 Add .env in client folder
 - VITE_REACT_APP_URI=https://mern-temp-render (Render deployed website link)
+
 Add config.env in server folder
 - ATLAS_URI=mongodb+srv://... (MongoDB drivers link)
 - PORT=5050
 Input deployment scripts for build and server commands
 
 If any questions, please create comment!
+
+## License
+MIT License
 
