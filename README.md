@@ -23,6 +23,7 @@ npm run devstart # server side command
 
 ## Development
 npm i in both server and client folders
+
 Add .env in client folder
 - VITE_REACT_APP_URI=http://localhost:5050
 Add config.env in server folder
