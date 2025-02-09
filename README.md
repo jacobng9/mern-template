@@ -1,7 +1,6 @@
 # Jacob's Mern Template 🍃
 
 This repository provides a boilerplate MERN (MongoDB, Express.js, React.js, Node.js) stack application. It is designed to help beginner developers quickly spin up a full-stack web application with a scalable architecture.
-For 
 
 Fork the project first.
 
